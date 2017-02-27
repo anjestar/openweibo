@@ -1,0 +1,24 @@
+{
+    "name": "gecco/openweibo",
+    "description": "PHP sdk for Weibo open platform",
+    "type": "library",
+    "keywords": ["sdk","weibo"],
+    "homepage": "http://github.com/anjestar/openweibo",
+    "license": "MIT",
+    "autoload": {
+        "psr-4":{
+            "Weibo\\": "./"
+        }
+    },
+    "require": {
+        "php": ">=5.0"
+    },
+    "authors": [
+        {
+            "name": "liuxin",
+            "email": "up.lxin@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev"
+
+}
