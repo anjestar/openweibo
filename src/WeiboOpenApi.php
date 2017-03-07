@@ -884,6 +884,28 @@ class WeiboClientV2
     }
 
     /**
+     * 批量获取指定微博的转发数评论数
+     *
+     * 对应API：{@link http://open.weibo.com/wiki/2/statuses/show_batch statuses/count}
+     *
+     * @param string $ids 需要查询的微博ID，用半角逗号分隔，最多不超过100个。
+     * @return array
+     */
+    function statuses_count( $ids )
+    {
+        $params=array();
+        if (is_array($ids) && !empty($ids)) {
+            foreach($ids as $k => $v) {
+                $this->id_format($ids[$k]);
+            }
+            $params['ids'] = join(',', $ids);
+        } else {
+            $params['ids'] = $ids;
+        }
+        return $this->oauth->get('statuses/count', $params);
+    }
+
+    /**
      * 通过微博（评论、私信）ID获取其MID
      *
      * 对应API：{@link http://open.weibo.com/wiki/2/statuses/querymid statuses/querymid}
@@ -1518,6 +1540,28 @@ class WeiboClientV2
             $params['uids'] = $uids;
         }
         return $this->oauth->get( 'users/show_batch', $params );
+    }
+
+    /**
+     * 批量获取用户的粉丝数、关注数、微博数
+     *
+     * 对应API：{@link http://open.weibo.com/wiki/2/users/count users/count}
+     *
+     * @param string $uids 需要查询的用户ID，用半角逗号分隔，一次最多100个。
+     * @return array
+     */
+    function users_count( $uids )
+    {
+        $params = array();
+        if (is_array( $uids ) && !empty( $uids )) {
+            foreach( $uids as $k => $v ) {
+                $this->id_format( $uids[$k] );
+            }
+            $params['uids'] = join(',', $uids);
+        } else {
+            $params['uids'] = $uids;
+        }
+        return $this->oauth->get( 'users/count', $params );
     }
 
     /**
