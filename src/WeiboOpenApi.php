@@ -1545,12 +1545,12 @@ class WeiboClientV2
     /**
      * 批量获取用户的粉丝数、关注数、微博数
      *
-     * 对应API：{@link http://open.weibo.com/wiki/2/users/count users/count}
+     * 对应API：{@link http://open.weibo.com/wiki/2/users/counts users/counts}
      *
      * @param string $uids 需要查询的用户ID，用半角逗号分隔，一次最多100个。
      * @return array
      */
-    function users_count( $uids )
+    function users_counts($uids)
     {
         $params = array();
         if (is_array( $uids ) && !empty( $uids )) {
@@ -1561,7 +1561,7 @@ class WeiboClientV2
         } else {
             $params['uids'] = $uids;
         }
-        return $this->oauth->get( 'users/count', $params );
+        return $this->oauth->get( 'users/counts', $params );
     }
 
     /**
