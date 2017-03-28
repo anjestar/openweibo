@@ -285,7 +285,7 @@ class WeiboOAuthV2 {
 	function get($url, $parameters = array()) {
 		$response = $this->oAuthRequest($url, 'GET', $parameters);
 		if ($this->format === 'json' && $this->decode_json) {
-			return json_decode($response, true);
+			return json_decode($response);
 		}
 		return $response;
 	}
@@ -298,7 +298,7 @@ class WeiboOAuthV2 {
 	function post($url, $parameters = array(), $multi = false) {
 		$response = $this->oAuthRequest($url, 'POST', $parameters, $multi );
 		if ($this->format === 'json' && $this->decode_json) {
-			return json_decode($response, true);
+			return json_decode($response);
 		}
 		return $response;
 	}
